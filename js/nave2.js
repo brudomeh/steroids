@@ -82,7 +82,9 @@ Player.prototype.fin = function (enemigos){
         this.y > enemigos[i].y &&
         this.y < enemigos[i].y + enemigos[i].enemigosH){
 
-            window.alert("game over")
+            document.getElementById('juego').style.display = 'none'
+            document.getElementById('gameOver').style.display = 'block'
+
         }
 
     }

@@ -13,6 +13,7 @@ function bullets(game) {
     this._speedY = Math.sin(((this.bullet.player.angle*-5.425)*Math.PI)/180)*12
     this.img = new Image();
     this.img.src = './images/superbala.png'
+    this.audio = new Audio('./sonido/laser (mp3cut.net).mp3')
 }
 
 
@@ -32,6 +33,7 @@ bullets.prototype.creation = function () {
 
 
         this.cargador.push(new bullets(this.bullet));
+        this.audio.play();
 
 }
 
