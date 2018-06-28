@@ -1,6 +1,7 @@
-function enemies(game) {
+function enemies(game,spreads) {
 
     this.enemie = game;
+    this.spreads = spreads;
     this.radius = 10;
     this.y = Math.floor(Math.random() * 600);
     this.x = Math.floor(Math.random() * 1000);
@@ -12,6 +13,7 @@ function enemies(game) {
     this.enemigosW = 40;
     this.enemigosH = 40;
     this.enemigos = [];
+    this.killed = 0
     this.img = new Image();
     this.img.src = './images/asteroide.png'
     this.sprite = new Image();
@@ -47,6 +49,8 @@ enemies.prototype.draw = function () {
 
 enemies.prototype.creation = function () {
 
+    []
+    
     for (var i = 0; i < 10; i++) {
         this.enemigos.push(new enemies(this.enemie));
         this.enemigos[i].draw();
@@ -59,27 +63,17 @@ enemies.prototype.check = function (cargador) {
         
         for (var j = 0; j < cargador.length; j++) {
             
-            if (cargador[j].x + cargador[j].bulletW > this.enemigos[i].x &&
-                cargador[j].x < this.enemigos[i].x + this.enemigos[i].enemigosW &&
-                cargador[j].y < this.enemigos[i].y + this.enemigos[i].enemigosH && 
-                cargador[j].y + cargador[j].bulletH > this.enemigos[i].y
+            if (cargador[j].x > this.enemigos[i].x &&
+                cargador[j].x < this.enemigos[i].x + this.enemigos[i].enemigosW -3 &&
+                cargador[j].y < this.enemigos[i].y + this.enemigos[i].enemigosH -3 && 
+                cargador[j].y > this.enemigos[i].y
             ) {
                 
                 cargador.splice(j, 1)
+                this.spreads.draw(this.enemigos[i]);
                 this.enemigos.splice(i,1)
-                this.enemie.ctx.drawImage(
-                    this.sprite,
-                    this.frame,
-                    0,
-                    50,
-                    50,
-                    this.enemigos[i].x,
-                    this.enemigos[i].y,
-                    this.enemigos[i].enemigosW,
-                    this.enemigos[i].enemigosH)
-                    this.frame += 50
-
-                    console.log("hola")
+                this.killed ++
+                
             }
         }
     }

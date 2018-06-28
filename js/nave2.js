@@ -3,8 +3,8 @@ function Player(game, bullets) {
 
     this.W = 1200;
     this.H = 600;
-    this.x = 500;
-    this.y = 300;
+    this.x = 100;
+    this.y = 60;
 
     this.img = new Image();
     this.img.src = "./images/nave3.png";
@@ -75,13 +75,12 @@ Player.prototype.move = function () {
 
 Player.prototype.fin = function (enemigos){
 
-    console.log(enemigos)
     for(var i = 0 ; i < enemigos.length ; i++){
 
-        if(this.x + this.w/4 > enemigos[i].x &&
-        this.x - this.w/4 < enemigos[i].x + enemigos[i].enemigosW &&
-        this.y + this.h/2.5 > enemigos[i].y &&
-        this.y - this.h/2.5 < enemigos[i].y + enemigos[i].enemigosH){
+        if(this.x + 5 > enemigos[i].x &&
+        this.x -5 < enemigos[i].x + enemigos[i].enemigosW &&
+        this.y > enemigos[i].y &&
+        this.y < enemigos[i].y + enemigos[i].enemigosH){
 
             window.alert("game over")
         }

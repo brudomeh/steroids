@@ -14,7 +14,7 @@ Game.prototype.start = function () {
             this.draw();
             this.shoot();
             this.move();
-            this.marcadores(this.enemies.enemigos);
+            this.marcadores(this.enemies.enemigos, this.enemies.killed);
             this.colisions(this.bullets.cargador);
             this.gameOver(this.enemies.enemigos)
             this.enemies.enemigos.forEach(element => {
@@ -30,9 +30,10 @@ Game.prototype.start = function () {
 Game.prototype.reset = function () {
 
     this.player = new Player(this);
-    this.enemies = new enemies(this);
     this.bullets = new bullets(this);
     this.elementos = new elementos(this);
+    this.spreads = new spreads(this)
+    this.enemies = new enemies(this,this.spreads);
 
 };
 
@@ -69,6 +70,6 @@ Game.prototype.colisions = function(cargador){
     this.player.fin(enemigos) 
 } 
 
-Game.prototype.marcadores = function(enemigos){
-    this.elementos.dibuja(enemigos)
+Game.prototype.marcadores = function(enemigos , killed){
+    this.elementos.dibuja(enemigos , killed)
 }
