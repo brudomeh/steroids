@@ -2,9 +2,15 @@ function Game(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
     this.fps = 60;
+    this.counter=0;
     this.reset();
-    this.enemies.creation();
+}
 
+Game.prototype.levels = function(){
+    if(this.enemies.enemigos.length<=0){
+        this.enemies.creation(this.counter);
+        this.counter++
+    }
 }
 
 Game.prototype.start = function () {
@@ -14,6 +20,7 @@ Game.prototype.start = function () {
             this.draw();
             this.shoot();
             this.move();
+            this.levels();
             this.marcadores(this.enemies.enemigos, this.enemies.killed);
             this.colisions(this.bullets.cargador);
             this.gameOver(this.enemies.enemigos)

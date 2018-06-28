@@ -47,13 +47,14 @@ enemies.prototype.draw = function () {
 
 }
 
-enemies.prototype.creation = function () {
+enemies.prototype.creation = function (index) {
 
-    []
-    
-    for (var i = 0; i < 10; i++) {
-        this.enemigos.push(new enemies(this.enemie));
-        this.enemigos[i].draw();
+    var niveles = [1 , 5 , 10 , 20 , 60 ,100]
+
+
+        for (var i = 0; i < niveles[index]; i++) {
+            this.enemigos.push(new enemies(this.enemie));
+            this.enemigos[i].draw();
     }
 }
 
