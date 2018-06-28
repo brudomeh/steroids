@@ -1,22 +1,22 @@
 function Player(game, bullets) {
     this.game = game;
 
-    this.W = 1000;
+    this.W = 1200;
     this.H = 600;
     this.x = 500;
     this.y = 300;
 
     this.img = new Image();
-    this.img.src = "./images/nave.png";
+    this.img.src = "./images/nave3.png";
 
     this.w = 40;
     this.h = 20;
 
     this.dy = 0;
-    this.dx = 0;
+    this.dx = 0; 
     this.angle = 0;
     this.trust = 0;
-    this.maxSpeed = 15;
+    this.maxSpeed = 5;
     this.speed = Math.sqrt(this.dx * this.dx + this.dy * this.dy);
 
     this.bullets = bullets;
@@ -51,12 +51,12 @@ Player.prototype.setListeners = function () {
 
 Player.prototype.move = function () {
     if (this.trust) {
-        this.dx += Math.cos(this.angle * 2) * 0.025;
-        this.dy += Math.sin(this.angle * 2) * 0.025;
+        this.dx += Math.cos(this.angle * 2) * 0.15;
+        this.dy += Math.sin(this.angle * 2) * 0.15;
 
     } else {
-        this.dx *= 0.985;
-        this.dy *= 0.985;
+        this.dx *= 0.98;
+        this.dy *= 0.98;
     }
     if (this.speed > this.maxSpeed) {
         this.dx *= this.maxSpeed;
@@ -78,10 +78,10 @@ Player.prototype.fin = function (enemigos){
     console.log(enemigos)
     for(var i = 0 ; i < enemigos.length ; i++){
 
-        if(this.x + this.w/2 > enemigos[i].x &&
-        this.x - this.w/2 < enemigos[i].x + enemigos[i].enemigosW &&
-        this.y + this.h/2 > enemigos[i].y &&
-        this.y - this.h/2 < enemigos[i].y + enemigos[i].enemigosH){
+        if(this.x + this.w/4 > enemigos[i].x &&
+        this.x - this.w/4 < enemigos[i].x + enemigos[i].enemigosW &&
+        this.y + this.h/2.5 > enemigos[i].y &&
+        this.y - this.h/2.5 < enemigos[i].y + enemigos[i].enemigosH){
 
             window.alert("game over")
         }

@@ -1,4 +1,7 @@
 #juego{
     border: 1px solid red;
-      background: black;
+    background-image: url('./images/FONDO.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 30px
   }

@@ -6,11 +6,11 @@ function bullets(game) {
     this.y = game.player.y;
     this.vx = game.player.dx*10;
     this.vy = game.player.dy*10;
-    this.bulletH = 3;
-    this.bulletW = 7.5
+    this.bulletH = 4.5;
+    this.bulletW = 4.5
     this.cargador = [];
-    this._speedX = Math.cos(((this.bullet.player.angle*-5.425)*Math.PI)/180)*10
-    this._speedY = Math.sin(((this.bullet.player.angle*-5.425)*Math.PI)/180)*10
+    this._speedX = Math.cos(((this.bullet.player.angle*-5.425)*Math.PI)/180)*12
+    this._speedY = Math.sin(((this.bullet.player.angle*-5.425)*Math.PI)/180)*12
 
 }
 
@@ -43,7 +43,7 @@ bullets.prototype.fire = function (){
         
             this.cargador[j].draw();
 
-            if(this.cargador[j].x>1000 || this.cargador[j].y>600){
+            if(this.cargador[j].x>1200 || this.cargador[j].y>600){
                 this.cargador.splice(j,1);
             }
 
