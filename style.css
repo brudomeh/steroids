@@ -31,8 +31,8 @@ background-color: rgba(85, 255, 0, 0.83);
 height: 100px;
 width: 250px;
 position: absolute;
-bottom: 250px;
-right: 730px;
+bottom: 300px;
+right: 390px;
 border-radius: 10px;
 border-style: groove
 }
@@ -42,8 +42,8 @@ border-style: groove
   height: 100px;
   width: 250px;
   position: absolute;
-  bottom: 250px;
-  right: 730px;
+  bottom: 20px;
+  right: 550px;
   border-radius: 10px;
   border-style: groove; 
    
