@@ -66,10 +66,10 @@ Player.prototype.move = function () {
     this.x += this.dx;
     this.y += this.dy;
 
-    if (this.x > this.W) this.x = 0;
-    if (this.x < 0) this.x = this.W;
-    if (this.y > this.H) this.y = 0;
-    if (this.y < 0) this.y = this.H;
+    if (this.x > this.W+5) this.x = -5;
+    if (this.x < -6) this.x = this.W+6;
+    if (this.y > this.H+5) this.y = -5;
+    if (this.y < -6) this.y = this.H +6;
 
 };
 
