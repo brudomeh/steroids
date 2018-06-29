@@ -2,16 +2,32 @@ function Game(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
     this.fps = 60;
-    this.counter=0;
+    this.counter = 0;
     this.reset();
 }
 
-Game.prototype.levels = function(){
-    if(this.enemies.enemigos.length<=0){
-        this.enemies.creation(this.counter);
-        this.counter++
+Game.prototype.levels = function () {
+    if (this.enemies.enemigos.length <= 0) {
+        clearInterval(this.interval);
+        var newInterval = setInterval(
+            function() {
+            this.reset()
+            this.clear();
+            this.draw();
+            this.shoot();
+            this.move();
+            this.marcadores(this.enemies.enemigos, this.enemies.killed);
+            }.bind(this),1000 / this.fps
+        )
+        setTimeout(function () {
+            clearInterval(newInterval);
+            this.start();
+            this.enemies.creation(this.counter, this.player)
+            this.counter++;
+        }.bind(this), 3000)
     }
 }
+
 
 Game.prototype.start = function () {
     this.interval = setInterval(
@@ -40,7 +56,7 @@ Game.prototype.reset = function () {
     this.bullets = new bullets(this);
     this.elementos = new elementos(this);
     this.spreads = new spreads(this)
-    this.enemies = new enemies(this,this.spreads);
+    this.enemies = new enemies(this, this.spreads);
 
 };
 
@@ -56,27 +72,27 @@ Game.prototype.draw = function () {
 
 };
 
-Game.prototype.move = function (){
+Game.prototype.move = function () {
 
     this.player.move();
     this.player.setListeners();
 }
 
-Game.prototype.shoot = function(){
+Game.prototype.shoot = function () {
 
     this.bullets.fire();
 }
 
-Game.prototype.colisions = function(cargador){
+Game.prototype.colisions = function (cargador) {
 
     this.enemies.check(cargador);
 }
 
-  Game.prototype.gameOver = function (enemigos){
+Game.prototype.gameOver = function (enemigos) {
 
-    this.player.fin(enemigos) 
-} 
+    this.player.fin(enemigos)
+}
 
-Game.prototype.marcadores = function(enemigos , killed){
-    this.elementos.dibuja(enemigos , killed)
+Game.prototype.marcadores = function (enemigos, killed) {
+    this.elementos.dibuja(enemigos, killed)
 }

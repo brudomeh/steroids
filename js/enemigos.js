@@ -1,12 +1,12 @@
-function enemies(game,spreads) {
+function enemies(game, spreads) {
 
     this.enemie = game;
     this.spreads = spreads;
     this.radius = 10;
-    this.y = Math.floor(Math.random() * 600);
-    this.x = Math.floor(Math.random() * 1000);
-    this.vx = (Math.floor(Math.random() * 4)) - (Math.floor(Math.random() * 1));
-    this.vy = (Math.floor(Math.random() * 4)) - (Math.floor(Math.random() * 1))
+    this.y = Math.floor(Math.random() * 500) + 100;
+    this.x = Math.floor(Math.random() * 900) +150;
+    this.vx = (Math.floor(Math.random() * 5)) - (Math.floor(Math.random() * 1));
+    this.vy = (Math.floor(Math.random() * 5)) - (Math.floor(Math.random() * 1))
     this.color = '#FCF902'
     this.W = 1000;
     this.H = 600;
@@ -30,8 +30,7 @@ enemies.prototype.draw = function () {
     this.enemie.ctx.beginPath();
     this.enemie.ctx.fillStyle = this.color
     this.enemie.ctx.drawImage(this.img, this.x, this.y, this.enemigosW, this.enemigosH, )
-/*     this.enemie.ctx.fillRect(this.x, this.y, this.enemigosW, this.enemigosH, );
- */    this.enemie.ctx.closePath();
+    this.enemie.ctx.closePath();
     this.enemie.ctx.fill();
     this.x += this.vx;
     this.y += this.vy;
@@ -47,34 +46,35 @@ enemies.prototype.draw = function () {
 
 }
 
-enemies.prototype.creation = function (index) {
+enemies.prototype.creation = function (index, player) {
 
-    var niveles = [100 , 5 , 10 , 20 , 60 ,100]
+    var niveles = [1, 5, 10, 20, 60, 100]
 
 
-        for (var i = 0; i < niveles[index]; i++) {
-            this.enemigos.push(new enemies(this.enemie));
-            this.enemigos[i].draw();
-    }
+    for (var i = 0; i < niveles[index]; i++) {
+
+                this.enemigos.push(new enemies(this.enemie));
+                this.enemigos[i].draw();
+        }
 }
 
 enemies.prototype.check = function (cargador) {
-    
+
     for (var i = 0; i < this.enemigos.length; i++) {
-        
+
         for (var j = 0; j < cargador.length; j++) {
-            
+
             if (cargador[j].x > this.enemigos[i].x &&
-                cargador[j].x < this.enemigos[i].x + this.enemigos[i].enemigosW -3 &&
-                cargador[j].y < this.enemigos[i].y + this.enemigos[i].enemigosH -3 && 
+                cargador[j].x < this.enemigos[i].x + this.enemigos[i].enemigosW - 3 &&
+                cargador[j].y < this.enemigos[i].y + this.enemigos[i].enemigosH - 3 &&
                 cargador[j].y > this.enemigos[i].y
             ) {
-                
+
                 cargador.splice(j, 1)
                 this.spreads.draw(this.enemigos[i]);
-                this.enemigos.splice(i,1)
-                this.killed ++
-                
+                this.enemigos.splice(i, 1)
+                this.killed++
+
             }
         }
     }
