@@ -48,7 +48,7 @@ enemies.prototype.draw = function () {
 
 enemies.prototype.creation = function (index, player) {
 
-    var niveles = [1, 5, 10, 20, 60, 100]
+    var niveles = [5, 20, 30, 45, 60, 100]
 
 
     for (var i = 0; i < niveles[index]; i++) {
